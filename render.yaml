@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: qujiawei-birthday-share
+    runtime: static
+    repo: https://github.com/lastxuan4396/qujiawei-birthday-share.git
+    branch: main
+    autoDeploy: true
+    buildCommand: echo "Static site deploy"
+    staticPublishPath: .
