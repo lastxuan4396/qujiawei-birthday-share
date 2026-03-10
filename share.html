@@ -294,6 +294,20 @@
       transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
+    .actions a.btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
     .btn-main {
       color: #11182e;
       background: linear-gradient(135deg, #ffeab7, #ffd77f);
@@ -411,11 +425,16 @@
       }
 
       .actions,
-      .actions button {
+      .actions button,
+      .actions a {
         width: 100%;
       }
 
       .actions button {
+        padding: 12px 14px;
+      }
+
+      .actions a.btn-ghost {
         padding: 12px 14px;
       }
 
@@ -503,6 +522,7 @@
           <button id="shareBtn" class="btn-main" type="button">一键分享</button>
           <button id="copyBtn" class="btn-ghost" type="button">复制祝福文案</button>
           <button id="fireBtn" class="btn-ghost" type="button">再放一轮烟花</button>
+          <a class="btn-ghost" href="./miss-friends.html" target="_blank" rel="noopener noreferrer">想念朋友页</a>
         </div>
 
         <p class="note">

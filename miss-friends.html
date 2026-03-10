@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>想你们了 · 国内的朋友们</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='14'%3E%F0%9F%8C%83%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f5f1ea;
+      --text: #f7f4ef;
+      --muted: #d7d2c9;
+      --line: rgba(255, 255, 255, 0.2);
+      --glass: rgba(14, 18, 26, 0.62);
+      --amber: #f2b66b;
+      --blue: #7ecce0;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.48);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Noto Serif SC", serif;
+      background: #0a0f16;
+    }
+
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(6, 10, 16, 0.36), rgba(8, 10, 16, 0.85)),
+        radial-gradient(circle at 80% 10%, rgba(126, 204, 224, 0.28), rgba(126, 204, 224, 0) 38%),
+        radial-gradient(circle at 20% 90%, rgba(242, 182, 107, 0.18), rgba(242, 182, 107, 0) 40%),
+        url("./assets/friends-night.jpg") center / cover no-repeat;
+      transform: scale(1.06);
+      filter: saturate(1.04) contrast(1.03);
+      animation: breathe 16s ease-in-out infinite;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 0.6px, transparent 0.6px);
+      background-size: 3px 3px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      width: min(980px, calc(100% - 24px));
+      margin: 24px auto;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      min-height: 72vh;
+    }
+
+    .photo-pane {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .photo-pane img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.94);
+    }
+
+    .photo-pane::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(6, 10, 16, 0) 28%, rgba(6, 10, 16, 0.46));
+    }
+
+    .content {
+      padding: clamp(20px, 4vw, 42px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .tag {
+      width: fit-content;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 204, 224, 0.5);
+      color: #bceaf7;
+      padding: 6px 12px;
+      background: rgba(10, 20, 31, 0.5);
+    }
+
+    h1 {
+      margin: 0;
+      line-height: 1.16;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: 0.03em;
+      text-wrap: balance;
+      text-shadow: 0 10px 22px rgba(0, 0, 0, 0.44);
+    }
+
+    h1 .accent {
+      background: linear-gradient(120deg, #ffe0b7, var(--amber), #ffe8c8 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .brush {
+      margin: 0;
+      font-family: "Zhi Mang Xing", cursive;
+      font-size: clamp(34px, 4.5vw, 46px);
+      color: #d3f2ff;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 18px rgba(126, 204, 224, 0.36);
+    }
+
+    .proof {
+      margin: 4px 0 0;
+      color: var(--muted);
+      line-height: 1.86;
+      font-size: clamp(15px, 2vw, 18px);
+    }
+
+    .quotes {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .quote {
+      margin: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-left: 3px solid var(--blue);
+      border-radius: 13px;
+      padding: 12px 12px 12px 14px;
+      background: rgba(11, 17, 26, 0.56);
+      color: #f6f7fb;
+      line-height: 1.8;
+      font-size: clamp(14px, 2.1vw, 17px);
+      animation: rise 0.7s ease both;
+    }
+
+    .quote:nth-child(2) {
+      border-left-color: var(--amber);
+      animation-delay: 0.2s;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 16px;
+      background: rgba(7, 12, 20, 0.5);
+      color: rgba(236, 234, 228, 0.88);
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    a.action {
+      border: 0;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button {
+      color: #10161f;
+      background: linear-gradient(120deg, #fbdfb6, #f2b66b);
+    }
+
+    a.action {
+      color: #eef3f9;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    button:hover,
+    a.action:hover {
+      transform: translateY(-2px);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(10px);
+      z-index: 5;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 14, 25, 0.85);
+      color: #f5f7fb;
+      font-size: 13px;
+      padding: 8px 13px;
+      opacity: 0;
+      transition: 0.24s ease;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .page {
+        width: min(100%, calc(100% - 14px));
+        margin: 12px auto;
+        border-radius: 22px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .photo-pane {
+        max-height: 50vh;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .content {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: clamp(30px, 11vw, 46px);
+      }
+
+      .brush {
+        font-size: clamp(28px, 10vw, 42px);
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      button,
+      a.action {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1.06); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-photo"></div>
+  <div class="grain"></div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="photo-pane">
+        <img src="./assets/friends-night.jpg" alt="和国内朋友们的夜晚合照">
+      </div>
+
+      <div class="content">
+        <div class="tag">FOR FRIENDS IN CHINA</div>
+        <h1>我真的<br><span class="accent">想你们了</span></h1>
+        <p class="brush">这页就是证据</p>
+
+        <p class="proof">
+          人在国外，时差和距离会拉长路程，
+          但你们一直是我日常里最靠近的一部分。
+          有些想念不需要解释，点开这一页，就已经说明一切。
+        </p>
+
+        <div class="quotes">
+          <p class="quote">人在远方，心却常常在你们身边落座。</p>
+          <p class="quote">等下次重逢，我们把没聊完的日常，一口气聊到凌晨。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>想你们的这天：<span id="today"></span></div>
+      <div class="actions">
+        <button id="copyBtn" type="button">复制这页文案</button>
+        <a class="action" href="./share.html" target="_blank" rel="noopener noreferrer">打开生日分享页</a>
+      </div>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const dateEl = document.getElementById("today");
+    const now = new Date();
+    dateEl.textContent = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    const toastEl = document.getElementById("toast");
+    let timer;
+
+    function toast(text) {
+      toastEl.textContent = text;
+      toastEl.classList.add("show");
+      clearTimeout(timer);
+      timer = setTimeout(() => toastEl.classList.remove("show"), 1500);
+    }
+
+    const text = [
+      "我真的想你们了。",
+      "人在远方，心却常常在你们身边落座。",
+      "等下次重逢，我们把没聊完的日常，一口气聊到凌晨。"
+    ].join("\n");
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast("文案已复制");
+      } catch (_) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+        toast("文案已复制");
+      }
+    });
+  </script>
+</body>
+</html>
