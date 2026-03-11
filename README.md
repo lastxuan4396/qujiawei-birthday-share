@@ -19,3 +19,9 @@ python3 -m http.server 4782
 
 已提供 Render Blueprint 配置：`render.yaml`。
 
+## GitHub Positioning
+
+- Suggested description: `Mobile-first birthday greeting and share page with lightweight static deployment.`
+- Suggested topics: `landing-page`, `share-page`, `static-site`, `html`, `css`, `mobile-first`
+- Metadata notes: see [`docs/repo-metadata.md`](docs/repo-metadata.md)
+
